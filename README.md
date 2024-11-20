@@ -1,0 +1,1 @@
+Switch or cycle the red, green, blue, white and black backgrounds to find dead (sub-)pixels on the screen. Check screenshot for details.
