@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<head>
+    <title>LCD Test</title>
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            background-color: lightyellow;
+            overflow: hidden;
+        }
+        #help {
+            width: fit-content;
+            height: fit-content;
+            flex-direction: column;
+            border: 1px solid black;
+            padding: 10px;
+            background-color: aqua;
+            border-radius: 5px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+        }
+        .visible {
+            display: flex;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="help" class="visible">
+        <div style="font-weight: bold; text-align: center; margin-bottom: 10px;">
+            <div>LCD Test</div>
+        </div>
+        <div><b>[r]</b> Red</div>
+        <div><b>[g]</b> Green</div>
+        <div><b>[b]</b> Blue</div>
+        <div><b>[k]</b> Black</div>
+        <div><b>[w]</b> White</div>
+        <div><b>[SPACE]</b> Cycle colors</div>
+        <div><b>[F11]</b> Toggle fullscreen</div>
+        <div><b>[h]</b> Hide/show this help</div>
+    </div>
+    <script>
+        main();
+        function main() {
+            const body = document.querySelector("body");
+            const help = document.querySelector("#help");
+            const colors = ["red", "green", "blue", "black", "white"];
+            var colorIndex = 0;
+            document.addEventListener("keydown", handleKeyEvent);
+            function handleKeyEvent(e) {
+                switch(e.key) {
+                    // Red
+                    case "r":
+                        setColor(0);
+                        break;
+                    // Green
+                    case "g":
+                        setColor(1);
+                        break;
+                    // Blue
+                    case "b":
+                        setColor(2);
+                        break;
+                    // Black
+                    case "k":
+                        setColor(3);
+                        break;
+                    // White
+                    case "w":
+                        setColor(4);
+                        break;
+                    // Cycle colors
+                    case " ":
+                        console.log(colorIndex); 
+                        if (colorIndex + 1 >= colors.length) {
+                            colorIndex = 0;
+                        } else colorIndex ++;
+                        body.style.backgroundColor = colors[colorIndex];
+                        break;
+                    // Show/hide Help
+                    case "h":
+                        help.classList.toggle("hidden");
+                        break;
+                }
+                function setColor(c) {
+                    body.style.backgroundColor = colors[c];
+                    colorIndex = c;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
